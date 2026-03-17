@@ -1,8 +1,14 @@
 const VIDEO_DESKTOP = "video/video xdxdxdxd.mp4";
 const VIDEO_PHONE = "video/mishsda as.mp4"; // reemplaza con tu archivo 4:3
+let currentVideoMode = null; // "desktop" o "phone"
+let resizeTimeout = null;
+
+function getVideoMode() {
+  // Usa un umbral seguro para evitar toggle por barras de navegador
+  return window.innerWidth <= 640 ? "phone" : "desktop";
+}
 
 function setResponsiveVideo() {
-  console.log("setResponsiveVideo ejecutado");
   const video = document.getElementById("heroVideo");
   const source = document.getElementById("heroVideoSource");
   if (!video || !source) {
@@ -10,17 +16,15 @@ function setResponsiveVideo() {
     return;
   }
 
-  const isPhone = window.matchMedia("(max-width: 600px)").matches;
-  const newSrc = isPhone ? VIDEO_PHONE : VIDEO_DESKTOP;
-
-  // Usamos pathname para comparar con ruta relativa sin URL completa
-  const currentPath = source.getAttribute("src");
-  if (currentPath === newSrc) {
-    console.log("Video ya es el correcto: ", newSrc);
+  const mode = getVideoMode();
+  if (mode === currentVideoMode) {
     return;
   }
 
-  console.log("Cambiando video a", newSrc, "(phone?", isPhone, ")");
+  const newSrc = mode === "phone" ? VIDEO_PHONE : VIDEO_DESKTOP;
+  currentVideoMode = mode;
+
+  console.log("setResponsiveVideo: mode=", mode, "src=", newSrc);
   source.setAttribute("src", newSrc);
   video.load();
   video.play().catch((e) => {
@@ -29,4 +33,7 @@ function setResponsiveVideo() {
 }
 
 window.addEventListener("DOMContentLoaded", setResponsiveVideo);
-window.addEventListener("resize", setResponsiveVideo);
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(setResponsiveVideo, 150);
+});
