@@ -1,4 +1,4 @@
-const VIDEO_DESKTOP = "video/video xdxdxdxd.mp4";
+const VIDEO_DESKTOP = "video/hero 11.mp4";
 const VIDEO_PHONE = "video/mishsda as.mp4"; // reemplaza con tu archivo 4:3
 let currentVideoMode = null; // "desktop" o "phone"
 let resizeTimeout = null;
