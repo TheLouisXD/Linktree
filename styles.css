@@ -71,7 +71,7 @@ p{
     z-index: 2;
     width: 100%;
     height: 70px;
-    background: linear-gradient(0deg, transparent 10%, #a84989 23%);
+    background: linear-gradient(0deg, transparent 0%, #5C556E 30%);
     padding: 10px 15px;
     border-radius: 15px 15px 0 0;
     margin-bottom: -50px;
@@ -95,8 +95,8 @@ p{
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100px;
-    background: linear-gradient(180deg, transparent 20%, #ffb032 70%);
+    height: 120px;
+    background: linear-gradient(180deg, transparent 0%, #A7508A 70%);
     pointer-events: none;
 }
 
@@ -104,7 +104,7 @@ p{
     padding: 0px 25px 25px 25px;
     margin-top: -10px;
     text-align: center;
-    background: linear-gradient(180deg,#ffb032 0%, #d76508 100%);
+    background: linear-gradient(180deg,#A7508A 0%, #fb9746 100%);
     width: min(100%, 600px);
 }
 
@@ -170,6 +170,11 @@ p{
         width: 100%;
         margin: 0 auto;
         border-radius: 0;
+    }
+
+    .gradient {
+        height: 130px;
+        background: linear-gradient(180deg, transparent 0%, #A7508A 80%);
     }
 
     .body {
