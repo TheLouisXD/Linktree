@@ -37,3 +37,49 @@ window.addEventListener("resize", () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(setResponsiveVideo, 150);
 });
+
+function titleAnimation() {
+  const original = document.title || "ThelouisXD Space ✨";
+  const chars = original.split("");
+  let index = 0;
+  let direction = 1; // 1 = animar hacia -, -1 = restaurar
+  let phase = "dash";
+
+  const interval = setInterval(() => {
+    if (phase === "dash") {
+      if (index < chars.length) {
+        const current = [...chars];
+        current[index] = "-";
+        document.title = current.join("");
+        index++;
+      } else {
+        phase = "restore";
+        index = chars.length - 1;
+      }
+    } else {
+      phase = "dash";
+      index = 0;
+    }
+  }, 200);
+
+  return interval;
+}
+
+let titleAnimationInterval = null;
+window.addEventListener("DOMContentLoaded", () => {
+  titleAnimationInterval = titleAnimation();
+
+  const authorLink = document.getElementById("authorLink");
+  if (authorLink) {
+    authorLink.addEventListener("click", () => {
+      window.open("https://github.com/TheLouisXD", "_blank", "noopener,noreferrer");
+    });
+  }
+
+  const patrocinio = document.querySelector(".patrocinio");
+  if (patrocinio) {
+    patrocinio.addEventListener("click", () => {
+      window.open("https://www.twitch.tv/tannie_the_eevee", "_blank", "noopener,noreferrer");
+    });
+  }
+});
