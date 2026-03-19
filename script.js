@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const patrocinio = document.querySelector(".patrocinio");
+  const patrocinio = document.querySelector(".img-patrocinio");
   if (patrocinio) {
     patrocinio.addEventListener("click", () => {
       window.open("https://www.twitch.tv/tannie_the_eevee", "_blank", "noopener,noreferrer");
